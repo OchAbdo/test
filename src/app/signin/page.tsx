@@ -1,7 +1,11 @@
+import SignInNavbar from "@/components/siginnavbar";
+
 function SignInPage() 
 {
 
-    
+    return(
+        <SignInNavbar/>
+    )
 
 }
 
