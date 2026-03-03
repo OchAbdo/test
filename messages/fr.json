@@ -1,0 +1,17 @@
+{
+    "SignIn": {
+        "signup": "S'inscrire",
+        "privacyPolicy": "Politique de Confidentialité",
+        "termsService": "Conditions d'Utilisation",
+        "helpCenter": "Centre d'Aide",
+        "allrights": "© 2026 HealthCare. Tous droits réservés.",
+        "Welcome back": "Bon retour",
+        "Please enter your details to": "Veuillez entrer vos informations pour",
+        "login": "vous connecter",
+        "Email Address": "Adresse e-mail",
+        "Password": "Mot de passe",
+        "Forgot password?": "Mot de passe oublié ?",
+        "Remember me for 30 days": "Se souvenir de moi pendant 30 jours",
+        "Login to Account": "Se connecter au compte"
+    }
+}
