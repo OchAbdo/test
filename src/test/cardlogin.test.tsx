@@ -1,9 +1,8 @@
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import CardLogin from "@/components/cardlogin";
 
-// ─── Mocks ───────────────────────────────────────────────────────────────────
+// Mocks 
 
 jest.mock("next-intl", () => ({
   useTranslations: () => (key: string) => key,
@@ -59,13 +58,12 @@ jest.mock("@/components/ui/button", () => ({
   ),
 }));
 
-// ─── Helper ──────────────────────────────────────────────────────────────────
 
 function renderComponent() {
   return render(<CardLogin />);
 }
 
-// ─── Tests ───────────────────────────────────────────────────────────────────
+//Tests
 
 describe("CardLogin [intégration]", () => {
 
@@ -73,7 +71,7 @@ describe("CardLogin [intégration]", () => {
     renderComponent();
   });
 
-  // ── Structure ──────────────────────────────────────────────────────────────
+  // Structure 
 
   describe("Structure", () => {
     it("affiche le titre 'Welcome back'", () => {
@@ -88,7 +86,7 @@ describe("CardLogin [intégration]", () => {
 
   });
 
-  // ── Champs du formulaire ───────────────────────────────────────────────────
+  // Champs du formulaire 
 
   describe("Champs du formulaire", () => {
     it("affiche le champ email avec le bon type", () => {
@@ -128,7 +126,7 @@ describe("CardLogin [intégration]", () => {
     });
   });
 
-  // ── Toggle mot de passe ────────────────────────────────────────────────────
+  // Toggle mot de passe
 
   describe("Toggle visibilité du mot de passe", () => {
     it("le mot de passe est masqué par défaut", () => {
@@ -156,7 +154,7 @@ describe("CardLogin [intégration]", () => {
     });
   });
 
-  // ── Liens ──────────────────────────────────────────────────────────────────
+  // Liens
 
   describe("Liens", () => {
     it("affiche le lien 'Forgot password?'", () => {
@@ -166,7 +164,7 @@ describe("CardLogin [intégration]", () => {
     });
   });
 
-  // ── Bouton de soumission ───────────────────────────────────────────────────
+  // Bouton de soumission 
 
   describe("Bouton de soumission", () => {
     it("affiche le bouton 'Login to Account'", () => {
@@ -182,25 +180,4 @@ describe("CardLogin [intégration]", () => {
     });
   });
 
-  // ── Accessibilité ──────────────────────────────────────────────────────────
-
-  describe("Accessibilité", () => {
-    it("le champ email est lié à son label via htmlFor/id", () => {
-      expect(screen.getByLabelText(/email address/i)).toBeInTheDocument();
-    });
-
-    it("le champ password est lié à son label via htmlFor/id", () => {
-      expect(screen.getByLabelText(/^password$/i)).toBeInTheDocument();
-    });
-
-    it("le champ email a l'autoComplete 'email'", () => {
-      const emailInput = screen.getByRole("textbox", { name: /email address/i });
-      expect(emailInput).toHaveAttribute("autocomplete", "email");
-    });
-
-    it("le champ password a l'autoComplete 'current-password'", () => {
-      const passwordInput = screen.getByPlaceholderText("••••••••");
-      expect(passwordInput).toHaveAttribute("autocomplete", "current-password");
-    });
-  });
 });

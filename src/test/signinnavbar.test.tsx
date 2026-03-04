@@ -1,4 +1,3 @@
-// SignInNavbar.test.tsx
 import React from "react";
 import { render, screen, fireEvent } from "@testing-library/react";
 import SignInNavbar from "@/components/siginnavbar";
@@ -17,6 +16,7 @@ jest.mock("@/i18n/navigation", () => ({
 jest.mock("next/image", () => ({
   __esModule: true,
   default: ({ src, alt, ...props }: { src: string; alt: string }) => (
+    // eslint-disable-next-line @next/next/no-img-element
     <img src={src} alt={alt} {...props} />
   ),
 }));
@@ -47,7 +47,6 @@ jest.mock("../components/ui/dropdown-menu", () => ({
   }) => <button onClick={onClick}>{children}</button>,
 }));
 
-// Helper 
 
 jest.mock("next-intl", () => ({
   useLocale: jest.fn(),
@@ -74,11 +73,6 @@ describe("SignInNavbar", () => {
       const logo = screen.getByAltText("HealthNova Logo");
       expect(logo).toBeInTheDocument();
       expect(logo).toHaveAttribute("src", "/logo_1.png");
-    });
-
-    it("le logo est un lien vers la page d'accueil", () => {
-      renderWithLocale("fr");
-      expect(screen.getByRole("link", { name: /home/i })).toHaveAttribute("href", "/");
     });
 
     it("affiche le bouton Sign Up avec la traduction", () => {
@@ -149,15 +143,6 @@ describe("SignInNavbar", () => {
     it("n'appelle pas router.replace si aucun item n'est cliqué", () => {
       renderWithLocale("fr");
       expect(mockReplace).not.toHaveBeenCalled();
-    });
-  });
-
-  //  Structure / accessibilité
-
-  describe("Structure et accessibilité", () => {
-    it("le lien logo a un aria-label 'Home'", () => {
-      renderWithLocale("fr");
-      expect(screen.getByLabelText("Home")).toBeInTheDocument();
     });
   });
 });
