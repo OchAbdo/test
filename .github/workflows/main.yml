@@ -16,6 +16,10 @@ jobs:
     name: Test & Build Frontend
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: apps/frontend
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -23,17 +27,21 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '22.x'
           cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
+      - name: Security audit
+        run: npm audit --audit-level=high
+
+      - name: Run unit tests
+        run: npm run test:unit
 
       - name: Run integration tests
-        run: npm run test
-
-      - name: Run lint
-        run: npm run lint
+        run: npm run test:integration
 
       - name: Build frontend
         run: npm run build
